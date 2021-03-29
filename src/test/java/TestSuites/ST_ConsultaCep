@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite de testes para API de Consultar CEP nos Correios" parallel="tests">
+
+    <test name="Fluxo padrão">
+        <classes>
+            <class name="TestCases.ConsultaCep.FluxoBasico" />
+        </classes>
+    </test>
+
+    <test name="Fluxo de exceções">
+        <classes>
+            <class name="TestCases.ConsultaCep.FluxoDeExcecoes" />
+        </classes>
+    </test>
+
+</suite>
