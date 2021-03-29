@@ -2,6 +2,13 @@
 Prova técnica de Automação de Testes - API
 
 ## Como Executar?
+- Instale o Framework Allure:
+
+```
+$ npm install -g allure-commandline --save-dev
+```
+
+
 - Execute a suite de teste de forma manual ou executando o seguitne comando:
 
 ```
@@ -13,4 +20,10 @@ $ mvn clean test -Dsurefire.suiteXmlFiles=src/test/java/Testsuites/ApiInscritos.
 
 ```
 $ mvn -Dtest=ReportGenerate#run test
+```
+
+- Abrir o relatório Gerado
+
+```
+$ allure open
 ```

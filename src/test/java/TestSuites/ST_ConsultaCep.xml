@@ -13,5 +13,4 @@
             <class name="TestCases.ConsultaCep.FluxoDeExcecoes" />
         </classes>
     </test>
-
 </suite>

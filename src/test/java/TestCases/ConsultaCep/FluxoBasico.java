@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 @Epic("EPIC - Consulta CEP")
-@Feature("Verificar fluxo básico segundo regra de negocio RQ.234")
+@Feature("Verificar fluxo basico segundo regra de negocio RQ.234")
 public class FluxoBasico {
 
     ResponseConsultaCep objResponseCep;
@@ -28,7 +28,7 @@ public class FluxoBasico {
 
     @Severity(SeverityLevel.NORMAL)
     @Test(description="Consulta CEP valido")
-    @Description("Dado que o usuário inseri um CEP válido")
+    @Description("Dado que o usuario inseri um CEP valido")
     public void cepInexistente() throws IOException {
 
         Assert.assertEquals(
@@ -38,8 +38,8 @@ public class FluxoBasico {
     }
 
     @Severity(SeverityLevel.NORMAL)
-    @Test(description="Verifica o código do IBGE do CEP informado (Desafio)")
-    @Description("Dado que o usuário inseri um CEP válido")
+    @Test(description="Verifica o codigo do IBGE do CEP informado (Desafio)")
+    @Description("Dado que o usuario inseri um CEP valido")
     public void cepFormatoInvalido() throws IOException {
 
         apiFunc.execComand("GET","74710060","","*/*");

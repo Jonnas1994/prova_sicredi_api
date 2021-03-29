@@ -1,6 +1,7 @@
 package TestCases.ConsultaCep;
 
 import Model.ResponseConsultaCep;
+import Model.ResponseError;
 import Services.Api;
 import com.google.gson.Gson;
 import io.qameta.allure.*;
@@ -15,7 +16,7 @@ import java.io.IOException;
 @Feature("Verificar fluxo de Excecoes segundo regra de negocio RQ.235")
 public class FluxoDeExcecoes {
 
-    ResponseConsultaCep objPessoa;
+    ResponseError objResponseCep;
     Api apiFunc;
     Gson gson;
 
@@ -27,12 +28,12 @@ public class FluxoDeExcecoes {
     }
 
     @Severity(SeverityLevel.NORMAL)
-    @Test(description="Consulta CEP com formato inválido")
-    @Description("Dado que o usuário inseri um CEP com formato inválido")
+    @Test(description="Consulta CEP com formato invalido")
+    @Description("Dado que o usuario inseri um CEP com formato invalido")
     public void cepFormatoInvalido() throws IOException {
 
         Assert.assertEquals(
-                apiFunc.execComand("GET","74710.060","","*/*"), 200
+                apiFunc.execComand("GET","74710.060","","*/*"), 400
         );
 
     }
@@ -42,8 +43,11 @@ public class FluxoDeExcecoes {
     @Description("Dado que o usuário inseri um CEP que não exista na base dos Correios")
     public void cepInexistente() throws IOException {
 
+        apiFunc.execComand("GET","17000018","","*/*");
+        objResponseCep = gson.fromJson(apiFunc.responseBody, ResponseError.class);
+
         Assert.assertEquals(
-                apiFunc.execComand("GET","17000018","","*/*"), 200
+                objResponseCep.getErro(), true
         );
 
     }

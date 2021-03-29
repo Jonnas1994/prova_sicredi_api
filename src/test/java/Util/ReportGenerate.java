@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class ReportGenerate {
 
@@ -29,18 +30,25 @@ public class ReportGenerate {
         LocalDateTime then = LocalDateTime.now();
         String dirLocal = new File(".").getCanonicalPath();
 
+        //Gera o report
         if (new File(dirLocal + "\\allure-results").exists()) {
 
             System.out.println("Gerando Report do Allure...");
-
             Runtime.getRuntime().exec("cmd.exe /K " +
-                    "cd "+ dirLocal +" && allure generate  "+ dirLocal +"\\allure-results --clean -o "+ dirLocal +"\\folderAllureVM\\default\\reports\\latest");
+                    "allure generate  "+ dirLocal +"\\allure-results --clean -o "+ dirLocal +"\\allure-report");
 
+            then = LocalDateTime.now();
+            File fileReport = new File(dirLocal + "\\allure-report");
+            while(fileReport.exists() != true){
+                if (ChronoUnit.SECONDS.between(then, LocalDateTime.now()) >= 15){
+                    throw new FileNotFoundException("Ops! Não foi possivel gerar o Diretório [allure-report] :(");
+                }
+            }
             System.out.println("Report gerado com sucesso!");
-            Thread.sleep(5000);
+            Thread.sleep(3000);
 
         }else{
-            throw new FileNotFoundException("Ops! Diretorio [allure-results] não encontrado :(");
+            throw new FileNotFoundException("Ops! Diretório [allure-results] não encontrado :(");
         }
     }
 
